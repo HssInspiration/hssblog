@@ -1,0 +1,22 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hssblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  port: 8082
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 127.0.0.1:6379
+hssblog:
+  jwt:
+    # jwt秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token超时时间
+    expire: 604800
+    header: Authorization
