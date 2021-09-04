@@ -1,7 +1,6 @@
 package com.hssblog.controller;
 
-
-import com.hssblog.common.lang.Result;
+import com.hssblog.common.resp.RespBean;
 import com.hssblog.entity.User;
 import com.hssblog.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
- * @author 关注公众号：hssblog
+ * @author hssblog
  * @since 2020-05-25
  */
 @RestController
@@ -24,16 +23,27 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * 进入首页
+     *
+     * @return RespBean
+     */
     @RequiresAuthentication
     @GetMapping("/index")
-    public Result index() {
+    public RespBean index() {
         User user = userService.getById(1L);
-        return Result.succ(user);
+        return RespBean.success(user);
     }
 
+    /**
+     * 保存用户信息
+     *
+     * @param user User
+     * @return RespBean
+     */
     @PostMapping("/save")
-    public Result save(@Validated @RequestBody User user) {
-        return Result.succ(user);
+    public RespBean save(@Validated @RequestBody User user) {
+        return RespBean.success(user);
     }
 
 }

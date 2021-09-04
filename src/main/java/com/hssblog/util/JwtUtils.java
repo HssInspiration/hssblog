@@ -1,5 +1,6 @@
 package com.hssblog.util;
 
+import com.hssblog.common.constant.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.swing.*;
 import java.util.Date;
 
 /**
@@ -25,6 +27,9 @@ public class JwtUtils {
 
     /**
      * 生成jwt token
+     *
+     * @param userId 用户id
+     * @return json web token
      */
     public String generateToken(long userId) {
         Date nowDate = new Date();
@@ -32,7 +37,7 @@ public class JwtUtils {
         Date expireDate = new Date(nowDate.getTime() + expire * 1000);
 
         return Jwts.builder()
-                .setHeaderParam("typ", "JWT")
+                .setHeaderParam(Constants.jwtConstants.TYPE, Constants.jwtConstants.JWT_KEY_UP)
                 .setSubject(userId + "")
                 .setIssuedAt(nowDate)
                 .setExpiration(expireDate)
@@ -40,6 +45,12 @@ public class JwtUtils {
                 .compact();
     }
 
+    /**
+     * 解析jwt获取payload body
+     *
+     * @param token jwt
+     * @return Claims
+     */
     public Claims getClaimByToken(String token) {
         try {
             return Jwts.parser()
@@ -47,7 +58,7 @@ public class JwtUtils {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
-            log.debug("validate is token error ", e);
+            log.error("validate is token error ", e);
             return null;
         }
     }

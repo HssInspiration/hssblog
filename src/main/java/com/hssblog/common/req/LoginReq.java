@@ -1,4 +1,4 @@
-package com.hssblog.common.dto;
+package com.hssblog.common.req;
 
 import lombok.Data;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @Setter
 @Getter
-public class LoginDto implements Serializable {
+public class LoginReq implements Serializable {
 
     private static final long serialVersionUID = -1719007021295326643L;
 

@@ -18,5 +18,8 @@ hssblog:
     # jwt秘钥
     secret: f4e2e52034348f86b67cde581c0f9eb5
     # token超时时间
-    expire: 604800
+    expire: 3600000
     header: Authorization
+logging:
+  level: debug
+  config: classpath:logback.xml

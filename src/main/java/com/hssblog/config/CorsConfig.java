@@ -1,6 +1,8 @@
 package com.hssblog.config;
 
+import com.hssblog.common.constant.Constants;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -9,14 +11,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
-
+    /**
+     * 设置Cors
+     *
+     * @param registry CorsRegistry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
+        // TODO 当前放开的是所以的请求，需支持
+        registry.addMapping(Constants.TWO_ASTERISK_WITH_SLASH)
+                .allowedOrigins(Constants.ASTERISK)
+                .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.DELETE.name())
                 .allowCredentials(true)
-                .maxAge(3600)
-                .allowedHeaders("*");
+                .maxAge(Constants.reqParams.MAX_AGE)
+                .allowedHeaders(Constants.ASTERISK);
     }
 }

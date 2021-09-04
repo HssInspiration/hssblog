@@ -1,5 +1,6 @@
 package com.hssblog.config;
 
+import com.hssblog.common.constant.Constants;
 import com.hssblog.shiro.AccountRealm;
 import com.hssblog.shiro.JwtFilter;
 import org.apache.shiro.mgt.SecurityManager;
@@ -20,12 +21,21 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * ShiroConfig
+ */
 @Configuration
 public class ShiroConfig {
 
     @Autowired
     JwtFilter jwtFilter;
 
+    /**
+     * 往Session管理器中注入RedisSession
+     *
+     * @param redisSessionDAO
+     * @return SessionManager
+     */
     @Bean
     public SessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
@@ -37,8 +47,8 @@ public class ShiroConfig {
 
     @Bean
     public DefaultWebSecurityManager securityManager(AccountRealm accountRealm,
-                                                   SessionManager sessionManager,
-                                                   RedisCacheManager redisCacheManager) {
+                                                     SessionManager sessionManager,
+                                                     RedisCacheManager redisCacheManager) {
 
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(accountRealm);
 
@@ -56,7 +66,7 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<>();
 
-        filterMap.put("/**", "jwt");
+        filterMap.put(Constants.TWO_ASTERISK_WITH_SLASH, Constants.jwtConstants.JWT_KEY_DOWN);
         chainDefinition.addPathDefinitions(filterMap);
         return chainDefinition;
     }
@@ -68,7 +78,7 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager);
 
         Map<String, Filter> filters = new HashMap<>();
-        filters.put("jwt", jwtFilter);
+        filters.put(Constants.jwtConstants.JWT_KEY_DOWN, jwtFilter);
         shiroFilter.setFilters(filters);
 
         Map<String, String> filterMap = shiroFilterChainDefinition.getFilterChainMap();
