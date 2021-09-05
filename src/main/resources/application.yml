@@ -21,5 +21,6 @@ hssblog:
     expire: 3600000
     header: Authorization
 logging:
-  level: debug
+  level:
+    root: debug
   config: classpath:logback.xml

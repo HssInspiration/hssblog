@@ -40,7 +40,6 @@ public class BlogController {
      * @param currentPage 单当前页
      * @return RespBean
      */
-    @RequiresAuthentication
     @GetMapping("/blogs")
     public RespBean list(@RequestParam(defaultValue = "1") Integer currentPage) {
         Page page = new Page(currentPage, 5);

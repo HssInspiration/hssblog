@@ -43,7 +43,8 @@ public class UserController {
      */
     @PostMapping("/save")
     public RespBean save(@Validated @RequestBody User user) {
-        return RespBean.success(user);
+        userService.save(user);
+        return RespBean.success();
     }
 
 }

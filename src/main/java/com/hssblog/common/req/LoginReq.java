@@ -15,7 +15,7 @@ public class LoginReq implements Serializable {
     private static final long serialVersionUID = -1719007021295326643L;
 
     @NotBlank(message = "昵称不能为空")
-    private String username;
+    private String userName;
 
     @NotBlank(message = "密码不能为空")
     private String password;

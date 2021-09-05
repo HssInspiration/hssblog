@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    /**
+     * 新增User
+     *
+     * @param user User
+     * @return userId
+     */
+    Long saveUser(User user);
+
 }

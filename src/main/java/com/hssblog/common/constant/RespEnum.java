@@ -25,9 +25,8 @@ public enum RespEnum {
     DATA_CANNOT_BE_NULL("1001000", "数据不能为空"),
     INSERT_FAILED("1001001", "新增失败，请重试！"),
     USER_OR_PWD_CHECK_FAILED("1001002", "请输入正确的用户名或密码！"),
+    USER_ALREADY_EXIST("1001003", "用户名已存在！"),
     SERVER_BUSY("503", "服务器正忙，请稍后再试!");
     private final String code;
     private final String msg;
-
-
 }

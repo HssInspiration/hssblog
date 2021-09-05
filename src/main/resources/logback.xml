@@ -8,17 +8,28 @@
         /> -->
     <contextName>Logback For Boss</contextName>
     <!-- name的值是变量的名称，value的值时变量定义的值。通过定义的值会被插入到logger上下文中。定义变量后，可以使“${}”来使用变量。 -->
-    <property name="log.path" value="F:/locakback" />
+    <property name="log.path" value="F:/logback"/>
     <!-- 定义日志文件 输入位置 -->
-    <property name="logDir" value="/home" />
+    <property name="logDir" value="/home"/>
     <!-- 日志最大的历史 30天 -->
-    <property name="maxHistory" value="30" />
+    <property name="maxHistory" value="30"/>
 
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
     <!-- 控制台输出日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger-%msg%n</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger-%msg%n</pattern>-->
             <charset class="java.nio.charset.Charset">UTF-8</charset>
         </encoder>
     </appender>
@@ -39,7 +50,8 @@
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger -
-                %msg%n</pattern>
+                %msg%n
+            </pattern>
             <charset class="java.nio.charset.Charset">UTF-8</charset>
         </encoder>
         <append>false</append>
@@ -141,11 +153,11 @@
      -->
     <logger name="org.springframework" level="info"/>
     <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE" />
-    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG" />
-    <logger name="org.hibernate.SQL" level="DEBUG" />
-    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG" />
-    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
 
     <!--myibatis log configure-->
     <logger name="com.apache.ibatis" level="TRACE"/>
@@ -155,11 +167,11 @@
     <!-- root级别 DEBUG -->
     <root level="DEBUG">
         <!-- 控制台输出 -->
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
         <!-- 文件输出 -->
-        <appender-ref ref="ERROR" />
-        <appender-ref ref="INFO" />
-        <appender-ref ref="WARN" />
-        <appender-ref ref="DEBUG" />
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="WARN"/>
+        <appender-ref ref="DEBUG"/>
     </root>
 </configuration>

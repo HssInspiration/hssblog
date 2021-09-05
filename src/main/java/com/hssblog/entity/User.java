@@ -1,8 +1,11 @@
 package com.hssblog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,6 +16,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -32,11 +36,13 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
+    @TableField("username")
     @NotBlank(message = "昵称不能为空")
-    private String username;
+    private String userName;
 
     private String avatar;
 
@@ -48,7 +54,7 @@ public class User implements Serializable {
 
     private Integer status;
 
-    private LocalDateTime created;
+    private Date created;
 
-    private LocalDateTime lastLogin;
+    private Date lastLogin;
 }
