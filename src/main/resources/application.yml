@@ -2,9 +2,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hssblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://localhost:3306/hssblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://47.98.130.147:3306/hssblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+#    password: root
+    password: Hss_123456
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 server:
@@ -12,7 +14,8 @@ server:
 shiro-redis:
   enabled: true
   redis-manager:
-    host: 127.0.0.1:6379
+#    host: 127.0.0.1:6379
+    host: 47.98.130.147:6379
 hssblog:
   jwt:
     # jwt秘钥
