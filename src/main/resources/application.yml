@@ -16,6 +16,7 @@ shiro-redis:
   redis-manager:
 #    host: 127.0.0.1:6379
     host: 47.98.130.147:6379
+    password: 123456
 hssblog:
   jwt:
     # jwt秘钥

@@ -73,7 +73,7 @@ public class BlogController {
         Blog temp;
         if (blog.getId() != null) {
             temp = blogService.getById(blog.getId());
-            if (temp.getUserId().equals(ShiroUtil.getProfile().getId())) {
+            if (!temp.getUserId().equals(ShiroUtil.getProfile().getId())) {
                 log.error(">>>>>>>>>>>>>>>当前用户无编辑权限");
                 throw new GlobalException(RespEnum.NO_AUTHORITY_EDIT);
             }
