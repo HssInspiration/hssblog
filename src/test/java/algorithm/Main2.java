@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Scanner;
+
 /**
  * 描述
  * 输入一个字符串和一个整数 k ，截取字符串的前k个字符并输出
@@ -42,4 +44,12 @@ package algorithm;
  * @Desc
  */
 public class Main2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()){
+            String str = sc.nextLine();
+            int num = sc.nextInt();
+            System.out.println(str.substring(0, num));
+        }
+    }
 }
